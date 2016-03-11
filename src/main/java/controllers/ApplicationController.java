@@ -57,15 +57,41 @@ public class ApplicationController {
         Game g = new Game();
         g.buildDeck();
         g.shuffle();
-        g.dealFour();
+        //g.dealFour();
+        g.playerHit();
+        g.playerHit();
+        g.dealerHit();
+        g.dealerHit();
 
         return Results.json().render(g);
     }
 
     public Result dealPost(Context context, Game g) {
         if(context.getRequestPath().contains("deal")){
-            g.dealFour();
+            //g.dealFour();
         }
+        return Results.json().render(g);
+    }
+
+    public Result playerHit(Context context, Game g){
+        g.playerHit();
+        return Results.json().render(g);
+    }
+
+    public Result dealerHit(Context context, Game g){
+        g.dealerHit();
+        return Results.json().render(g);
+    }
+
+    public Result newRound(Context context, Game g){
+        g.clearBoard();
+        g.buildDeck();
+        g.shuffle();
+        g.playerHit();
+        g.playerHit();
+        g.dealerHit();
+        g.dealerHit();
+
         return Results.json().render(g);
     }
 

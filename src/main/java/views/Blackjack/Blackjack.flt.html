@@ -3,11 +3,11 @@
 
 
 <header>
-    <img id="logo" src="/assets/cards/headImage.jpg" width="300px" height="300px" alt="4 Ace's">
-    <h1 class="header">Aces Up</h1>
+    <!-- <img id="logo" src="/assets/cards/headImage.jpg" width="300px" height="300px" alt="4 Ace's"> -->
+    <h1 class="header">BlackJack</h1>
 </header>
 
-<div id="select" style="width:800px; top:100px; left:200px; position:absolute; color:#fff; background-color:#6c6; padding: 10px;"><span onclick="english()">English</span> <br> <span onclick="spanish()">Spanish</span></div>
+<!-- <div id="select" style="width:800px; top:100px; left:200px; position:absolute; color:#fff; background-color:#6c6; padding: 10px;"><span onclick="english()">English</span> <br> <span onclick="spanish()">Spanish</span></div> -->
 
 <table>
     <!--<tr class="title">
@@ -93,17 +93,18 @@
 </table>
 <div class="wrapper">
     <div id="div1" class="div1">
-    <button type="button" id="dealButton" class="deckButton">
-        <img src="/assets/cards/backofdeck.jpg" width="200" height="300" alt="Draw">
-    </button>
+        <button type="button" id="playerHit">Player</button>
+        <button type="button" id="dealerHit">Dealer</button>
+        <button type="button" id="newRound">New Round</button>
     </div>
 
+    <!--
     <div id="div2" class="div2">
     <!--Remove from: <button id="Remove1">Column1</button>
     <button id="Remove2">Column2</button>
     <button id="Remove3">Column3</button>
     <button id="Remove4">Column4</button>
-    -->
+    --
     <BR>
 
     <p id="swapThese">Move from column <input type="text" id="from_col" size="1"  />
@@ -111,6 +112,7 @@
     &nbsp <button id="moveButton">Move</button></p><br>
     <p id="swapThese">Note: Columns are numbered 0 to 3</p>
     </div>
+    -->
 </div>
 <script>
 
@@ -123,25 +125,26 @@ $( '.columnOfCards .cardLocation' ).html("");
 
     $.each(game.cols[0], function( key, val ) {
         $( '#c0 td' ).removeClass("frontCard");
-        $( '#c0 .l'+key ).html("<img src='/assets/cards/" + val.value + "_of_" + val.suit + ".png'" +  " onclick=\"removeCard(0)\">");
+        $( '#c0 .l'+key ).html("<img src='/assets/cards/" + val.value + "_of_" + val.suit + ".png'>");
+        $( '#c0 .l0' ).html("<img src='/assets/cards/backofdeck.jpg'>");
         $( '#c0 .l'+key ).addClass("frontCard");
     });
 
      $.each(game.cols[1], function( key, val ) {
         $( '#c1 td' ).removeClass("frontCard");
-        $( '#c1 .l'+key ).html("<img src='/assets/cards/" + val.value + "_of_" + val.suit + ".png'" +  " onclick=\"removeCard(1)\">");
+        $( '#c1 .l'+key ).html("<img src='/assets/cards/" + val.value + "_of_" + val.suit + ".png'>");
         $( '#c1 .l'+key ).addClass("frontCard");
     });
 
      $.each(game.cols[2], function( key, val ) {
         $( '#c2 td' ).removeClass("frontCard");
-        $( '#c2 .l'+key ).html("<img src='/assets/cards/" + val.value + "_of_" + val.suit + ".png'" +  " onclick=\"removeCard(2)\">");
+        $( '#c2 .l'+key ).html("<img src='/assets/cards/" + val.value + "_of_" + val.suit + ".png'>");
         $( '#c2 .l'+key ).addClass("frontCard");
     });
 
  $.each(game.cols[3], function( key, val ) {
         $( '#c3 td' ).removeClass("frontCard");
-        $( '#c3 .l'+key ).html("<img src='/assets/cards/" + val.value + "_of_" + val.suit + ".png'" +  " onclick=\"removeCard(3)\">");
+        $( '#c3 .l'+key ).html("<img src='/assets/cards/" + val.value + "_of_" + val.suit + ".png'>");
         $( '#c3 .l'+key ).addClass("frontCard");
     });
 
@@ -149,13 +152,44 @@ $( '.columnOfCards .cardLocation' ).html("");
 
 }
 
-/*
+
+function displayDealer(game) {
+
+$( '.columnOfCards .cardLocation' ).html("");
+
+    $.each(game.cols[0], function( key, val ) {
+        $( '#c0 td' ).removeClass("frontCard");
+        $( '#c0 .l'+key ).html("<img src='/assets/cards/" + val.value + "_of_" + val.suit + ".png'" +  " onclick=\"removeCard(0)\">");
+        $( '#c0 .l'+key ).addClass("frontCard");
+    });
+
+    $.each(game.cols[1], function( key, val ) {
+        $( '#c1 td' ).removeClass("frontCard");
+        $( '#c1 .l'+key ).html("<img src='/assets/cards/" + val.value + "_of_" + val.suit + ".png'>");
+        $( '#c1 .l'+key ).addClass("frontCard");
+    });
+
+     $.each(game.cols[2], function( key, val ) {
+        $( '#c2 td' ).removeClass("frontCard");
+        $( '#c2 .l'+key ).html("<img src='/assets/cards/" + val.value + "_of_" + val.suit + ".png'>");
+        $( '#c2 .l'+key ).addClass("frontCard");
+    });
+
+ $.each(game.cols[3], function( key, val ) {
+        $( '#c3 td' ).removeClass("frontCard");
+        $( '#c3 .l'+key ).html("<img src='/assets/cards/" + val.value + "_of_" + val.suit + ".png'>");
+        $( '#c3 .l'+key ).addClass("frontCard");
+    });
+
+}
+
 $.getJSON("http://localhost:8080/game", function( data ) {
 display(data);
 game = data;
 });
-*/
 
+
+/*
 function english(){
     $.getJSON("http://localhost:8080/game", function( data ) {
     display(data);
@@ -171,9 +205,35 @@ function spanish(){
     });
     document.getElementById("select").style.display = 'none';
 }
+*/
 
+$("#playerHit").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/playerHit",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
 
+$("#dealerHit").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/dealerHit",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        displayDealer(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
 
+/*
 $("#dealButton").click(function(){
 $.ajax({
   type: "POST",
@@ -186,7 +246,20 @@ $.ajax({
   dataType:"json",
 });
 });
+*/
 
+$("#newRound").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/newRound",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
 
 function removeCard(colNumber){
 $.ajax({

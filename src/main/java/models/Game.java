@@ -21,6 +21,15 @@ public class Game {
         cols.add(new ArrayList<Card>());
     }
 
+    public void clearBoard(){
+        cols = new ArrayList<>();
+        cols.add(new ArrayList<Card>());
+        cols.add(new ArrayList<Card>());
+        cols.add(new ArrayList<Card>());
+        cols.add(new ArrayList<Card>());
+
+        deck = new ArrayList<>();
+    }
 
 
 
@@ -66,11 +75,23 @@ public class Game {
         Collections.shuffle(deck, new Random(seed));
     }
 
+    /*
     public void dealFour() {
         for(int i = 0; i < 4; i++){
             cols.get(i).add(deck.get(deck.size()-1));
             deck.remove(deck.size()-1);
         }
+    }
+    */
+
+    public void playerHit() {
+        cols.get(1).add(deck.get(deck.size()-1));
+        deck.remove(deck.size()-1);
+    }
+
+    public void dealerHit() {
+        cols.get(0).add(deck.get(deck.size()-1));
+        deck.remove(deck.size()-1);
     }
 
     //customDeal to setup game for testing purposes
