@@ -17,7 +17,6 @@
 package controllers;
 
 import models.Blackjack;
-import models.Game;
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
