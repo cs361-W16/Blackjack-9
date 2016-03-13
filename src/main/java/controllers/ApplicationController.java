@@ -96,8 +96,7 @@ public class ApplicationController {
     }
 
     public void doubleDown(Context context, Game g){
-        g.playerHit();
-        g.dPlay();
+
     }
 
     public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
