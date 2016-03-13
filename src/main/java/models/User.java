@@ -9,8 +9,11 @@ public class User extends Player {
         total = 0;
     }
 
-    public Card hit(java.util.List<Card> deck){
-        return new Card(0, Suit.Clubs);
+    public void userHit(java.util.List<Card> deck, java.util.List<Card> row){
+        row.add(deck.get(deck.size() - 1));
+        int v = getGameValue(deck.get(deck.size() - 1));
+        deck.remove(deck.size() - 1);
+        total = total + v;
     }
 
     public void split(){

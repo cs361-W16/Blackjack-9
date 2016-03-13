@@ -9,7 +9,7 @@ public class Dealer extends Player {
         total = 0;
     }
 
-    public Card hit(java.util.List<Card> deck){
+    public Card dealerHit(java.util.List<Card> deck){
         Card c = deck.get(deck.size() - 1);
         deck.remove(deck.size() - 1);
         return c;
@@ -17,18 +17,6 @@ public class Dealer extends Player {
 
     public int stay(){
         return total;
-    }
-
-    public int getGameValue(Card c){
-        if(c.getValue() <= 10){
-            return c.getValue();
-        }
-        else if(c.getValue() > 10 && c.getValue() < 14){
-            return 10;
-        }
-        else{
-            return 11;
-        }
     }
 
     public int dealerPlay(java.util.List<Card> dealerRow, java.util.List<Card> deck){
@@ -45,7 +33,7 @@ public class Dealer extends Player {
         int r = 2;
         int v;
         while(total < 17) {
-            dealerRow.add(hit(deck));
+            dealerRow.add(dealerHit(deck));
             v = getGameValue(dealerRow.get(r));
             if(v == 11 && (total + v) > 21){
                 v = 1;

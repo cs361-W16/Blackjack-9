@@ -21,7 +21,7 @@ public class testDealer {
         Dealer d = new Dealer();
         java.util.List<Card> deck = new ArrayList<>();
         deck.add(new Card(0, Suit.Clubs));
-        Card c = d.hit(deck);
+        Card c = d.dealerHit(deck);
         assertNull(deck.get(0));
         assertEquals(c.getValue(), 0);
         assertEquals(c.getSuit(), Suit.Clubs);
