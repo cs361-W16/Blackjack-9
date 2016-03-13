@@ -88,7 +88,7 @@ public class Game {
     }
     */
 
-    /*
+
     public void playerHit() {
         cols.get(1).add(deck.get(deck.size()-1));
         deck.remove(deck.size()-1);
@@ -98,7 +98,7 @@ public class Game {
         cols.get(0).add(deck.get(deck.size()-1));
         deck.remove(deck.size()-1);
     }
-    */
+
 
     public int dPlay() {
         dealerTotal = dealer.dealerPlay(cols.get(0), deck);
