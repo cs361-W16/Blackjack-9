@@ -16,6 +16,7 @@
 
 package controllers;
 
+import models.Blackjack;
 import models.Game;
 import ninja.Context;
 import ninja.Result;
@@ -54,7 +55,7 @@ public class ApplicationController {
     }
 
     public Result gameGet(){
-        Game g = new Game();
+        Blackjack g = new Blackjack();
         g.buildDeck();
         g.shuffle();
         //g.dealFour();
@@ -66,24 +67,24 @@ public class ApplicationController {
         return Results.json().render(g);
     }
 
-    public Result dealPost(Context context, Game g) {
+    public Result dealPost(Context context, Blackjack g) {
         if(context.getRequestPath().contains("deal")){
             //g.dealFour();
         }
         return Results.json().render(g);
     }
 
-    public Result playerHit(Context context, Game g){
+    public Result playerHit(Context context, Blackjack g){
         g.playerHit();
         return Results.json().render(g);
     }
 
-    public Result dealerHit(Context context, Game g){
+    public Result dealerHit(Context context, Blackjack g){
         g.dealerHit();
         return Results.json().render(g);
     }
 
-    public Result newRound(Context context, Game g){
+    public Result newRound(Context context, Blackjack g){
         g.clearBoard();
         g.buildDeck();
         g.shuffle();
@@ -95,12 +96,12 @@ public class ApplicationController {
         return Results.json().render(g);
     }
 
-    public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
+    public Result removeCard(Context context, @PathParam("column") int colNumber, Blackjack g){
         g.remove(colNumber);
         return  Results.json().render(g);
     }
 
-    public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, Game g){
+    public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, Blackjack g){
         g.move(colFrom,colTo);
         return  Results.json().render(g);
     }

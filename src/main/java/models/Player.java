@@ -1,7 +1,5 @@
 package models;
 
-import java.util.ArrayList;
-
 /**
  * Created by Dilon_000 on 3/12/2016.
  */

@@ -81,14 +81,15 @@ public class Blackjack {
 
 
     public void startHand() {
+        user.restart();
+        dealer.restart();
         for(int i = 0; i < 4; i++){
             if(i < 3) {
                 cols.get(0).add(deck.get(deck.size() - 1));
                 deck.remove(deck.size() - 1);
             }
             else{
-                cols.get(1).add(deck.get(deck.size() - 1));
-                deck.remove(deck.size() - 1);
+                user.userHit(cols.get(1), deck);
             }
         }
     }
@@ -112,8 +113,8 @@ public class Blackjack {
     }
 
     public String scoring(){
-        if(dealerTotal > userTotal && dealerTotal() <= 21){
-            return "Dealer Wins!"
+        if(dealerTotal > userTotal && dealerTotal <= 21){
+            return "Dealer Wins!";
         }
         else if(dealerTotal == userTotal){
             return "Tie!";
