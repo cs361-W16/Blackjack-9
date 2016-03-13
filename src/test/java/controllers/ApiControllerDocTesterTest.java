@@ -59,4 +59,13 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
     
     }
 
+    @Test
+    public void doubleDown() {
+
+        Response response = makeRequest(
+                Request.GET().url(
+                        testServerUrl().path(URL_INDEX)));
+
+           assertThat();
+    }
 }
