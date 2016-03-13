@@ -95,6 +95,13 @@ public class ApplicationController {
         return Results.json().render(g);
     }
 
+    public Result doubleDown(Context context, Game g){
+        g.playerHit();
+        //Function to start new round
+
+        return Results.json().render(g);
+    }
+
     public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
         g.remove(colNumber);
         return  Results.json().render(g);
