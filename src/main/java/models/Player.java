@@ -13,7 +13,21 @@ public abstract class Player {
         total = 0;
     }
 
-    public abstract Card hit(java.util.List<Card> deck);
+    public int getGameValue(Card c){
+        if(c.getValue() <= 10){
+            return c.getValue();
+        }
+        else if(c.getValue() > 10 && c.getValue() < 14){
+            return 10;
+        }
+        else{
+            return 11;
+        }
+    }
+
+    public void restart(){
+        total = 0;
+    }
 
     public abstract int stay();
 }

@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Created by Dylan on 3/10/2016.
  */
-public class Game {
+public class Blackjack {
 
     public java.util.List<Card> deck = new ArrayList<>();
 
@@ -18,7 +18,7 @@ public class Game {
     public int userTotal;
     public int dealerTotal;
 
-    public Game(){
+    public Blackjack(){
         cols.add(new ArrayList<Card>());
         cols.add(new ArrayList<Card>());
         cols.add(new ArrayList<Card>());
@@ -79,14 +79,20 @@ public class Game {
         Collections.shuffle(deck, new Random(seed));
     }
 
-    /*
-    public void dealFour() {
+
+    public void startHand() {
         for(int i = 0; i < 4; i++){
-            cols.get(i).add(deck.get(deck.size()-1));
-            deck.remove(deck.size()-1);
+            if(i < 3) {
+                cols.get(0).add(deck.get(deck.size() - 1));
+                deck.remove(deck.size() - 1);
+            }
+            else{
+                cols.get(1).add(deck.get(deck.size() - 1));
+                deck.remove(deck.size() - 1);
+            }
         }
     }
-    */
+
 
 
     public void playerHit() {
@@ -103,6 +109,18 @@ public class Game {
     public int dPlay() {
         dealerTotal = dealer.dealerPlay(cols.get(0), deck);
         return dealerTotal;
+    }
+
+    public String scoring(){
+        if(dealerTotal > userTotal && dealerTotal() <= 21){
+            return "Dealer Wins!"
+        }
+        else if(dealerTotal == userTotal){
+            return "Tie!";
+        }
+        else{
+            return "You Win!";
+        }
     }
 
     //customDeal to setup game for testing purposes
