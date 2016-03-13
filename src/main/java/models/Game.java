@@ -13,6 +13,10 @@ public class Game {
 
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
 
+    public User user = new User();
+    public Dealer dealer = new Dealer();
+    public int userTotal;
+    public int dealerTotal;
 
     public Game(){
         cols.add(new ArrayList<Card>());
@@ -84,6 +88,7 @@ public class Game {
     }
     */
 
+    /*
     public void playerHit() {
         cols.get(1).add(deck.get(deck.size()-1));
         deck.remove(deck.size()-1);
@@ -92,6 +97,12 @@ public class Game {
     public void dealerHit() {
         cols.get(0).add(deck.get(deck.size()-1));
         deck.remove(deck.size()-1);
+    }
+    */
+
+    public int dPlay() {
+        dealerTotal = dealer.dealerPlay(cols.get(0), deck);
+        return dealerTotal;
     }
 
     //customDeal to setup game for testing purposes
