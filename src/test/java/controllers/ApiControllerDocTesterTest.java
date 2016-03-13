@@ -17,6 +17,7 @@
 package controllers;
 
 
+import ninja.Result;
 import org.junit.Test;
 
 import ninja.NinjaDocTester;
@@ -65,7 +66,14 @@ public class ApiControllerDocTesterTest extends NinjaDocTester {
         Response response = makeRequest(
                 Request.GET().url(
                         testServerUrl().path(URL_INDEX)));
+    }
 
-           assertThat();
+
+    @Test
+    public void split() {
+
+        Response response = makeRequest(
+                Request.GET().url(
+                        testServerUrl().path(URL_INDEX)));
     }
 }
