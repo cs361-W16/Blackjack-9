@@ -58,19 +58,12 @@ public class ApplicationController {
         Blackjack g = new Blackjack();
         g.buildDeck();
         g.shuffle();
-<<<<<<< HEAD
         g.startHand();
         //g.dealFour();
         //g.playerHit();
         //g.playerHit();
         //g.dealerHit();
         //g.dealerHit();
-=======
-        g.playerHit();
-        g.playerHit();
-        g.dealerHit();
-        g.dealerHit();
->>>>>>> c38ec8c28b32d06d2c1de8f05427b48c256c5f64
 
         return Results.json().render(g);
     }
