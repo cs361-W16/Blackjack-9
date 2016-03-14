@@ -24,7 +24,7 @@ public class testUser {
     }
 
     @Test
-    public void doubleDown() {
+    public void testDoubleDown() {
         User person = new User();
         Dealer dealer = new Dealer();
         java.util.List<Card> deck = new ArrayList<>();
@@ -36,5 +36,10 @@ public class testUser {
         assertEquals(userRow.get(0).suit, Suit.Spades);
     }
 
+    @Test
+    public void testStay() {
+        User person = new User();
+        assertEquals(person.stay(), 0);
+    }
 
 }
