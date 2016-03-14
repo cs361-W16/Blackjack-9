@@ -13,6 +13,9 @@ public class User extends Player {
         row.add(deck.get(deck.size() - 1));
         int v = getGameValue(deck.get(deck.size() - 1));
         deck.remove(deck.size() - 1);
+        if(v == 11 && (v + total) > 21){
+            v = 1;
+        }
         total = total + v;
     }
 
@@ -25,6 +28,6 @@ public class User extends Player {
     }
 
     public int stay(){
-        return 0;
+        return total;
     }
 }

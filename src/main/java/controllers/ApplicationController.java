@@ -57,11 +57,12 @@ public class ApplicationController {
         Blackjack g = new Blackjack();
         g.buildDeck();
         g.shuffle();
+        g.startHand();
         //g.dealFour();
-        g.playerHit();
-        g.playerHit();
-        g.dealerHit();
-        g.dealerHit();
+        //g.playerHit();
+        //g.playerHit();
+        //g.dealerHit();
+        //g.dealerHit();
 
         return Results.json().render(g);
     }
@@ -74,23 +75,26 @@ public class ApplicationController {
     }
 
     public Result playerHit(Context context, Blackjack g){
-        g.playerHit();
+        g.uHit();
         return Results.json().render(g);
     }
 
+    /*
     public Result dealerHit(Context context, Blackjack g){
         g.dealerHit();
         return Results.json().render(g);
     }
+    */
 
     public Result newRound(Context context, Blackjack g){
         g.clearBoard();
         g.buildDeck();
         g.shuffle();
-        g.playerHit();
-        g.playerHit();
-        g.dealerHit();
-        g.dealerHit();
+        g.startHand();
+        //g.playerHit();
+        //g.playerHit();
+        //g.dealerHit();
+        //g.dealerHit();
 
         return Results.json().render(g);
     }
