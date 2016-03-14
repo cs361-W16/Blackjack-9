@@ -30,10 +30,10 @@ public class testUser {
         java.util.List<Card> deck = new ArrayList<>();
         java.util.List<Card> userRow = new ArrayList<>();
         java.util.List<Card> dealerRow = new ArrayList<>();
-        deck.add(new Card(0, Suit.Hearts));
+        deck.add(new Card(0, Suit.Spades));
         person.doubleDown(deck, userRow, dealer, dealerRow);
         assertNull(deck.get(0));
-        assertEquals(userRow.get(0).suit, Suit.Hearts);
+        assertEquals(userRow.get(0).suit, Suit.Spades);
     }
 
 
