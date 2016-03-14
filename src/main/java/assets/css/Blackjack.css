@@ -113,3 +113,15 @@ position: relative;}
 #currentPot {
     color: white;
 }
+
+#money {
+    width:100px;
+    height:100px;
+    background-color: #ccc;
+}
+
+#pot {
+    width:100px;
+    height:100px;
+    background-color: #ccc;
+}
