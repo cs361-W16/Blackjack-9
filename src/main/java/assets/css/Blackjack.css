@@ -125,3 +125,7 @@ position: relative;}
     height:100px;
     background-color: #ccc;
 }
+
+#instructions {
+    color:white;
+}
