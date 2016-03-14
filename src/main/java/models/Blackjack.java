@@ -15,6 +15,8 @@ public class Blackjack {
 
     public int money = 100;
 
+    public int pot = 0;
+
     public User user = new User();
     public Dealer dealer = new Dealer();
     public int userTotal;
