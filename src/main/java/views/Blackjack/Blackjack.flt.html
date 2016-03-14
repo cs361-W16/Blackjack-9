@@ -96,6 +96,7 @@
         <button type="button" id="playerHit">Player</button>
         <button type="button" id="dealerHit">Dealer</button>
         <button type="button" id="newRound">New Round</button>
+        <button type="button" id="doubleDown">Double Down</button>
     </div>
 
     <!--
@@ -252,6 +253,19 @@ $("#newRound").click(function(){
 $.ajax({
   type: "POST",
   url: "/newRound",
+  data: JSON.stringify(game),
+  success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
+        game = data;
+        display(data);},
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+});
+});
+
+$("#doubleDown").click(function(){
+$.ajax({
+  type: "POST",
+  url: "/doubleDown",
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;

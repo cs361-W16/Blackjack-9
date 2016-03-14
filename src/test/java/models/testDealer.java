@@ -31,6 +31,7 @@ public class testDealer {
     public void testGetGameValue(){
         Dealer d = new Dealer();
         Card c = new Card(13, Suit.Hearts);
+
         assertEquals(d.getGameValue(c), 10);
     }
 

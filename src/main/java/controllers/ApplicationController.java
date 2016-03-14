@@ -20,6 +20,7 @@ import models.Blackjack;
 import ninja.Context;
 import ninja.Result;
 import ninja.Results;
+import models.User;
 
 import com.google.inject.Singleton;
 import ninja.params.PathParam;
@@ -33,20 +34,20 @@ public class ApplicationController {
         return Results.html();
 
     }
-    
+
     public Result helloWorldJson() {
-        
+
         SimplePojo simplePojo = new SimplePojo();
         simplePojo.content = "Hello World! Hello Json!";
 
         return Results.json().render(simplePojo);
 
     }
-    
+
     public static class SimplePojo {
 
         public String content;
-        
+
     }
 
     public Result Blackjack() {
@@ -57,7 +58,6 @@ public class ApplicationController {
         Blackjack g = new Blackjack();
         g.buildDeck();
         g.shuffle();
-        //g.dealFour();
         g.playerHit();
         g.playerHit();
         g.dealerHit();
@@ -80,6 +80,11 @@ public class ApplicationController {
 
     public Result dealerHit(Context context, Blackjack g){
         g.dealerHit();
+        return Results.json().render(g);
+    }
+
+    public Result doubleDown(Context context, Blackjack g){
+        g.user.doubleDown(g.deck,g.cols.get(1),g.dealer,g.cols.get(0));
         return Results.json().render(g);
     }
 
