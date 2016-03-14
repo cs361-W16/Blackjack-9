@@ -76,12 +76,12 @@ public class ApplicationController {
         return Results.json().render(g);
     }
 
-    /*
+
     public Result dealerHit(Context context, Blackjack g){
-        g.dealerHit();
+        g.dPlay();
         return Results.json().render(g);
     }
-    */
+
 
     public Result doubleDown(Context context, Blackjack g){
         g.user.doubleDown(g.deck,g.cols.get(1),g.dealer,g.cols.get(0));
