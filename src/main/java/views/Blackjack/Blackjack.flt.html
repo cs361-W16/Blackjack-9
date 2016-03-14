@@ -96,7 +96,12 @@
         <button type="button" id="playerHit">Player</button>
         <button type="button" id="dealerHit">Dealer</button>
         <button type="button" id="newRound">New Round</button>
-        <button type="button" id="doubleDown">Double Down</button>
+        <button type="button" id="doubleDown" onClick="changeBet(2)">Double Down</button>
+
+        <button type="button" id="betUp" onClick="changeBet(1)">Raise Bet</button>
+        <button type="button" id="betDown" onClick="changeBet(-1)">Lower Bet</button>
+        <p id="currentBalance">Current Balance: <span id="playerBalance" value="100">100</span> </p>
+        <p id="currentPot">Current Pot: <span id="gamePot" value="100">0</span> </p>
     </div>
 
     <!--
@@ -319,7 +324,24 @@ $.ajax({
 });
 });
 
+function changeBet(x) {
 
+    if(x == 1) {
+        document.getElementById("playerBalance").innerHTML--;
+        document.getElementById("playerBalance").innerHTML--;
+        document.getElementById("gamePot").innerHTML++;
+        document.getElementById("gamePot").innerHTML++;
+    }
+    else if ( x == -1) {
+        document.getElementById("playerBalance").innerHTML++;
+        document.getElementById("playerBalance").innerHTML++;
+        document.getElementById("gamePot").innerHTML--;
+        document.getElementById("gamePot").innerHTML--;
+    }
+    else if ( x == 2) {
+        document.getElementById("gamePot").innerHTML *= 2;
+    }
+}
 </script>
 
 

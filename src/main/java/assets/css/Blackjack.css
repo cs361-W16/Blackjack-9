@@ -75,6 +75,8 @@ position: static;
 
 	margin: 0px auto;
     margin-top: 10px;
+    padding-bottom: 500px;
+    padding-right: 200px;
 	overflow: hidden;
 	padding-top: 10px;
 	width: 50%;
@@ -98,4 +100,12 @@ position: relative;}
 	margin: 0 auto;
 	visibility: visible;
 	padding-left: 200px;
+}
+
+#currentBalance {
+    color: white;
+}
+
+#currentPot {
+    color: white;
 }
