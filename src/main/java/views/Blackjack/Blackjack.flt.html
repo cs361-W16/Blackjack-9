@@ -91,11 +91,8 @@
 </table>
 <div class="wrapper">
     <div id="div1" class="div1">
-        <button type="button" id="playerHit">Player Hit</button>
+
         <button type="button" id="dealerReveal">Dealer Reveal</button>
-        <button type="button" id="dealerHit">Dealer Hit</button>
-        <button type="button" id="newRound">New Round</button>
-        <button type="button" id="doubleDown" onClick="changeBet(2)">Double Down</button>
 
         <button type="button" id="betUp" onClick="changeBet(1)">Raise Bet</button>
         <button type="button" id="betDown" onClick="changeBet(-1)">Lower Bet</button>
@@ -297,7 +294,7 @@ $.ajax({
   data: JSON.stringify(game),
   success: function(data, status){console.log("Data: " + data + "\nStatus: " + status);
         game = data;
-        display(data);},
+        displayDealer(data);},
   contentType:"application/json; charset=utf-8",
   dataType:"json",
 });
