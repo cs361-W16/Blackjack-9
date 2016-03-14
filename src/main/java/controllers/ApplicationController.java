@@ -33,20 +33,20 @@ public class ApplicationController {
         return Results.html();
 
     }
-    
+
     public Result helloWorldJson() {
-        
+
         SimplePojo simplePojo = new SimplePojo();
         simplePojo.content = "Hello World! Hello Json!";
 
         return Results.json().render(simplePojo);
 
     }
-    
+
     public static class SimplePojo {
 
         public String content;
-        
+
     }
 
     public Result Blackjack() {
@@ -95,15 +95,7 @@ public class ApplicationController {
         return Results.json().render(g);
     }
 
-<<<<<<< HEAD
-    public void doubleDown(Context context, Game g){
-
-    }
-
-    public Result removeCard(Context context, @PathParam("column") int colNumber, Game g){
-=======
     public Result removeCard(Context context, @PathParam("column") int colNumber, Blackjack g){
->>>>>>> ed17cae557c69eff11ed534fef9ad91464bc9add
         g.remove(colNumber);
         return  Results.json().render(g);
     }

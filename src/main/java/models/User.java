@@ -18,12 +18,11 @@ public class User extends Player {
 
     public void split(){
 
-
     }
 
-    public void doubleDown(){
-
-
+    public void doubleDown(java.util.List<Card> deck, java.util.List<Card> userRow, Dealer dealer, java.util.List<Card> dealerRow){
+        userHit(deck, userRow);
+        dealer.dealerPlay( dealerRow, deck);
     }
 
     public int stay(){
