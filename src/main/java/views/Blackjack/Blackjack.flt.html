@@ -3,20 +3,16 @@
 
 
 <header>
-    <!-- <img id="logo" src="/assets/cards/headImage.jpg" width="300px" height="300px" alt="4 Ace's"> -->
     <h1 class="header">BlackJack</h1>
 </header>
 
-<!-- <div id="select" style="width:800px; top:100px; left:200px; position:absolute; color:#fff; background-color:#6c6; padding: 10px;"><span onclick="english()">English</span> <br> <span onclick="spanish()">Spanish</span></div> -->
+
+
+<div id="money"></div>
+<div id="pot"></div>
 
 <table>
-    <!--<tr class="title">
-        <td >Column0</td>
-        <td >Column1</td>
-        <td >Column2</td>
-        <td >Column3</td>
-    </tr>
-    -->
+
     <tr><td class="columnOfCards" id="c0">
         <table>
             <tr><td class="cardLocation l0"></td></tr>
@@ -33,6 +29,7 @@
             <tr><td class="cardLocation l11"></td></tr>
             <tr><td class="cardLocation l12"></td></tr>
             <tr><td class="cardLocation l13"></td></tr>
+            <tr><td id="dealerScore"></td></tr>
         </table>
     </td>
         <td class="columnOfCards" id="c1">
@@ -51,6 +48,7 @@
                 <tr><td class="cardLocation l11"></td></tr>
                 <tr><td class="cardLocation l12"></td></tr>
                 <tr><td class="cardLocation l13"></td></tr>
+                <tr><td id="playerScore"></td></tr>
             </table>
         </td>
         <td class="columnOfCards" id="c2">
@@ -93,27 +91,21 @@
 </table>
 <div class="wrapper">
     <div id="div1" class="div1">
-        <button type="button" id="playerHit">Player</button>
-        <button type="button" id="dealerHit">Dealer</button>
+        <button type="button" id="playerHit">Player Hit</button>
+        <button type="button" id="dealerReveal">Dealer Reveal</button>
+        <button type="button" id="dealerHit">Dealer Hit</button>
         <button type="button" id="newRound">New Round</button>
+        <button type="button" id="doubleDown" onClick="changeBet(2)">Double Down</button>
+
+        <button type="button" id="betUp" onClick="changeBet(1)">Raise Bet</button>
+        <button type="button" id="betDown" onClick="changeBet(-1)">Lower Bet</button>
+
+        <button type="button" id="playerHit">Hit me!</button>
+        <button type="button" id="dealerHit">Stand</button>
+        <button type="button" id="newRound">New Deck</button>
         <button type="button" id="doubleDown">Double Down</button>
     </div>
 
-    <!--
-    <div id="div2" class="div2">
-    <!--Remove from: <button id="Remove1">Column1</button>
-    <button id="Remove2">Column2</button>
-    <button id="Remove3">Column3</button>
-    <button id="Remove4">Column4</button>
-    --
-    <BR>
-
-    <p id="swapThese">Move from column <input type="text" id="from_col" size="1"  />
-    to <input type="text" id="to_col" size="1" />
-    &nbsp <button id="moveButton">Move</button></p><br>
-    <p id="swapThese">Note: Columns are numbered 0 to 3</p>
-    </div>
-    -->
 </div>
 <script>
 
@@ -123,6 +115,11 @@ function display(game) {
 console.log(game);
 
 $( '.columnOfCards .cardLocation' ).html("");
+
+    document.getElementById("money").innerHTML = game.money;
+    document.getElementById("pot").innerHTML = 0;
+    document.getElementById("playerScore").innerHTML = game.user.total;
+    document.getElementById("dealerScore").innerHTML = "";
 
     $.each(game.cols[0], function( key, val ) {
         $( '#c0 td' ).removeClass("frontCard");
@@ -153,8 +150,39 @@ $( '.columnOfCards .cardLocation' ).html("");
 
 }
 
+function changeBet(x) {
+
+    if(x == 1) {
+        if(document.getElementById("money").innerHTML == 0) {
+            exit;
+        }
+        document.getElementById("money").innerHTML -= 2;
+        document.getElementById("pot").innerHTML++;
+        document.getElementById("pot").innerHTML++;
+    }
+    else if ( x == -1) {
+        if (document.getElementById("pot").innerHTML == 0) {
+            exit;
+        }
+        document.getElementById("money").innerHTML++
+        document.getElementById("money").innerHTML++
+        document.getElementById("pot").innerHTML -= 2;
+
+    }
+    else if ( x == 2) {
+        document.getElementById("pot").innerHTML *= 2;
+    }
+}
+
+$("#dealerReveal").click(function(){
+    displayDealer(game);
+});
 
 function displayDealer(game) {
+
+    document.getElementById("money").innerHTML = game.money;
+    document.getElementById("playerScore").innerHTML = game.user.total;
+    document.getElementById("dealerScore").innerHTML = game.dealer.total;
 
 $( '.columnOfCards .cardLocation' ).html("");
 
@@ -319,10 +347,7 @@ $.ajax({
 });
 });
 
-
 </script>
-
-
 
 </body>
 </html>

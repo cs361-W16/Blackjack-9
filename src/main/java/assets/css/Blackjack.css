@@ -75,17 +75,23 @@ position: static;
 
 	margin: 0px auto;
     margin-top: 10px;
+    padding-bottom: 500px;
+    padding-right: 200px;
 	overflow: hidden;
 	padding-top: 10px;
 	width: 50%;
 	height: 65%;
-	min-width: 100px;
+	min-width: 120px;
 	min-height: 200px;
 	max-width: 200px;
-	max-height: 300px;
+	max-height: 350px;
 
 	border: 1px solid #000000;
 	margin: 0 auto;
+}
+
+#c2, #c3 {
+    display: none;
 }
 
 .deckButton {
@@ -98,4 +104,24 @@ position: relative;}
 	margin: 0 auto;
 	visibility: visible;
 	padding-left: 200px;
+}
+
+#currentBalance {
+    color: white;
+}
+
+#currentPot {
+    color: white;
+}
+
+#money {
+    width:100px;
+    height:100px;
+    background-color: #ccc;
+}
+
+#pot {
+    width:100px;
+    height:100px;
+    background-color: #ccc;
 }
