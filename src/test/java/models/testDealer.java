@@ -21,7 +21,7 @@ public class testDealer {
         Dealer d = new Dealer();
         java.util.List<Card> deck = new ArrayList<>();
         deck.add(new Card(0, Suit.Clubs));
-        Card c = d.hit(deck);
+        Card c = d.dealerHit(deck);
         assertNull(deck.get(0));
         assertEquals(c.getValue(), 0);
         assertEquals(c.getSuit(), Suit.Clubs);
@@ -31,6 +31,7 @@ public class testDealer {
     public void testGetGameValue(){
         Dealer d = new Dealer();
         Card c = new Card(13, Suit.Hearts);
+
         assertEquals(d.getGameValue(c), 10);
     }
 
