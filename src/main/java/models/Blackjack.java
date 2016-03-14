@@ -21,6 +21,7 @@ public class Blackjack {
     public Dealer dealer = new Dealer();
     public int userTotal;
     public int dealerTotal;
+    public String message;
 
     public Blackjack(){
         cols.add(new ArrayList<Card>());
@@ -87,6 +88,7 @@ public class Blackjack {
     public void startHand() {
         user.restart();
         dealer.restart();
+        message = "Continue";
         for(int i = 0; i < 4; i++){
             if(i < 3) {
                 cols.get(0).add(deck.get(deck.size() - 1));
@@ -99,7 +101,7 @@ public class Blackjack {
     }
 
 
-
+    /*
     public void playerHit() {
         cols.get(1).add(deck.get(deck.size()-1));
         deck.remove(deck.size()-1);
@@ -109,22 +111,30 @@ public class Blackjack {
         cols.get(0).add(deck.get(deck.size()-1));
         deck.remove(deck.size()-1);
     }
+    */
 
+    public void uHit(){
+        user.userHit(deck, cols.get(1));
+        userTotal = user.stay();
+        if(userTotal > 21){
+            message = "Dealer Wins!";
+        }
+    }
 
     public int dPlay() {
         dealerTotal = dealer.dealerPlay(cols.get(0), deck);
         return dealerTotal;
     }
 
-    public String scoring(){
+    public void scoring(){
         if(dealerTotal > userTotal && dealerTotal <= 21){
-            return "Dealer Wins!";
+            message = "Dealer Wins!";
         }
         else if(dealerTotal == userTotal){
-            return "Tie!";
+            message = "Tie!";
         }
         else{
-            return "You Win!";
+            message = "You Win!";
         }
     }
 
