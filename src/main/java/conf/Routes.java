@@ -36,7 +36,7 @@ public class Routes implements ApplicationRoutes {
 
         router.POST().route("/dealGame").with(ApplicationController.class, "dealPost");
 
-        router.POST().route("/playerHit").with(ApplicationController.class, "playerHit");
+        router.POST().route("/playerHit").with(ApplicationController.class, "userHit");
         router.POST().route("/dealerHit").with(ApplicationController.class, "dealerHit");
 
         router.POST().route("/doubleDown").with(ApplicationController.class, "doubleDown");
