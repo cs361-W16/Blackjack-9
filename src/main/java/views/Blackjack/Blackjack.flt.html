@@ -91,20 +91,16 @@
 </table>
 <div class="wrapper">
     <div id="div1" class="div1">
+        <p id="instructions">$2 Minimum Buy-In</p>
         <button type="button" id="playerHit">Player Hit</button>
         <button type="button" id="dealerReveal">Dealer Reveal</button>
         <button type="button" id="dealerHit">Dealer Hit</button>
         <button type="button" id="newRound">New Round</button>
-        <button type="button" id="doubleDown" onClick="changeBet(2)">Double Down</button>
 
         <button type="button" id="betUp" onClick="changeBet(1)">Raise Bet</button>
         <button type="button" id="betDown" onClick="changeBet(-1)">Lower Bet</button>
-
-        <button type="button" id="playerHit">Hit me!</button>
-        <button type="button" id="dealerHit">Stand</button>
-        <button type="button" id="newRound">New Deck</button>
-        <button type="button" id="doubleDown">Double Down</button>
-    </div>
+        <button type="button" id="doubleDown" onClick="changeBet(2)">Double Down</button>
+    </div>0
 
 </div>
 <script>
@@ -175,6 +171,9 @@ function changeBet(x) {
 }
 
 $("#dealerReveal").click(function(){
+    displayDealer(game);
+});
+$("#doubleDown").click(function(){
     displayDealer(game);
 });
 
