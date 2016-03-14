@@ -16,10 +16,14 @@
 
 package controllers;
 
+import models.Blackjack;
+import ninja.Context;
 import ninja.Result;
 import ninja.Results;
+import models.User;
 
 import com.google.inject.Singleton;
+import ninja.params.PathParam;
 
 
 @Singleton
@@ -30,19 +34,79 @@ public class ApplicationController {
         return Results.html();
 
     }
-    
+
     public Result helloWorldJson() {
-        
+
         SimplePojo simplePojo = new SimplePojo();
         simplePojo.content = "Hello World! Hello Json!";
 
         return Results.json().render(simplePojo);
 
     }
-    
+
     public static class SimplePojo {
 
         public String content;
-        
+
+    }
+
+    public Result Blackjack() {
+        return Results.html().template("views/Blackjack/Blackjack.flt.html");
+    }
+
+    public Result gameGet(){
+        Blackjack g = new Blackjack();
+        g.buildDeck();
+        g.shuffle();
+        g.playerHit();
+        g.playerHit();
+        g.dealerHit();
+        g.dealerHit();
+
+        return Results.json().render(g);
+    }
+
+    public Result dealPost(Context context, Blackjack g) {
+        if(context.getRequestPath().contains("deal")){
+            //g.dealFour();
+        }
+        return Results.json().render(g);
+    }
+
+    public Result playerHit(Context context, Blackjack g){
+        g.playerHit();
+        return Results.json().render(g);
+    }
+
+    public Result dealerHit(Context context, Blackjack g){
+        g.dealerHit();
+        return Results.json().render(g);
+    }
+
+    public Result doubleDown(Context context, Blackjack g){
+        g.user.doubleDown(g.deck,g.cols.get(1),g.dealer,g.cols.get(0));
+        return Results.json().render(g);
+    }
+
+    public Result newRound(Context context, Blackjack g){
+        g.clearBoard();
+        g.buildDeck();
+        g.shuffle();
+        g.playerHit();
+        g.playerHit();
+        g.dealerHit();
+        g.dealerHit();
+
+        return Results.json().render(g);
+    }
+
+    public Result removeCard(Context context, @PathParam("column") int colNumber, Blackjack g){
+        g.remove(colNumber);
+        return  Results.json().render(g);
+    }
+
+    public Result moveCard(Context context, @PathParam("columnFrom") int colFrom, @PathParam("columnTo") int colTo, Blackjack g){
+        g.move(colFrom,colTo);
+        return  Results.json().render(g);
     }
 }
