@@ -13,6 +13,8 @@ public class Blackjack {
 
     public java.util.List<java.util.List<Card>> cols = new ArrayList<>();
 
+    public int money = 100;
+
     public User user = new User();
     public Dealer dealer = new Dealer();
     public int userTotal;
