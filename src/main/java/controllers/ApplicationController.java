@@ -58,7 +58,6 @@ public class ApplicationController {
         Blackjack g = new Blackjack();
         g.buildDeck();
         g.shuffle();
-        //g.dealFour();
         g.playerHit();
         g.playerHit();
         g.dealerHit();
